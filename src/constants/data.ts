@@ -1,0 +1,1 @@
+export const initialAmount = 89023;
