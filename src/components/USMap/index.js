@@ -36,17 +36,17 @@ const USMap = ({ initialAmount }) => {
     if (!inView) return;
     const timer = setTimeout(() => {
       console.log("storySection inview", storySection);
-      
+
       setStorySection((prevSection) => prevSection + 1);
-    }, 4000);
+    }, 2000);
 
     return () => clearTimeout(timer);
-  }, [inView]);
+  }, [inView, storySection]);
 
   useEffect(() => {
     const runAnimations = async () => {
       console.log("storySection run", storySection);
-      
+
       if (storySection === 0) {
         // Step 0: Initial zoom in on New York
         await controls.start({
@@ -56,14 +56,6 @@ const USMap = ({ initialAmount }) => {
           transition: { duration: 0 },
         });
       } else if (storySection === 1) {
-        // Step 1: Hold zoomed-in state
-        await controls.start({
-          scale: 10,
-          x: "-50%",
-          y: "-50%",
-          transition: { duration: 1 },
-        });
-      } else if (storySection === 2) {
         // Step 2: Zoom out to show the entire US
         await controls.start({
           scale: 1,
@@ -71,7 +63,7 @@ const USMap = ({ initialAmount }) => {
           y: "0%",
           transition: { duration: 2.5 },
         });
-      } else if (storySection === 3) {
+      } else if (storySection === 2) {
         // Step 3: Show pins
         setShowPins(true);
       }
